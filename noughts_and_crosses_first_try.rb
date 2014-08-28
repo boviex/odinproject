@@ -133,18 +133,16 @@ module NoughtsAndCrosses
 		end
 		
 		def winning_row? #ugly, but it works
-			@grid.each do |row|
-				unless row.include? " " #if the row is full
-					if (row.include? "X") && (row.include? "O")
-						puts false
-						return false
-					else
-						puts true
+			@grid.each do |row| #for each row
+				if row.include? " " #if the row is not full
+					false
+				elsif (row.include? "X") && (row.include? "O") #or if more than one player is in that row
+						false
+				else #game is over if one side fills that row
 						return true
-					end
 				end
-				return false
 			end
+			false
 		end
 		
 		def winning_col? #ugly, but at least it's short
