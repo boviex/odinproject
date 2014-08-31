@@ -40,4 +40,7 @@ def merge_sort(array)
 		return array
 	end
 end
-p merge_sort([4,7,2,10,8,3,4,9,1,6])
+puts "Please enter the data to sort (numbers separated by commas)"
+input = gets.chomp.split(",")
+input = input.map { |i| i.strip.to_i }
+p merge_sort(input)
