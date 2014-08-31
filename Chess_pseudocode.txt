@@ -1,0 +1,69 @@
+Chess pseudocode!
+
+starting a game:
+	Game.new
+		- Welcome message
+		- Load a previous game?
+			- YES
+				- Display saved games (3 slots:
+				Save #: save_id
+				Name: save_name
+				Date: save_date(dd/mm/yy, hh:mm)
+				---------------
+				Save #: 2
+				Name: Adam vs Betty
+				Date: 30/08/14, 20:38
+				---------------
+				Save #: 3
+				Name: N/A
+				Date: N/A
+				---------------
+				- Enter save_id or 'back'
+				- Load saved game
+			- NO
+				- continue to New Game
+		- New game:
+			Generate new board, pieces
+
+			Each turn: print board
+  A B C D E F G H 
+1 r n b k q b n r 1  Turn count: 0
+2 p p p p p p p p 2  Previous move: e.g e7-e5 (CHECK)
+3   %   %   %   % 3
+4 %   %   %   %   4
+5   %   %   %   % 5
+6 %   %   %   %   6
+7 P P P P P P P P 7
+8 R N B Q K B N R 8
+  a b c d e f g h  
+  			WHITE has the move
+  			Enter a move (start_pos, end_pos), SAVE, or RESIGN:
+  				MOVE:
+  					- if move is illegal print "Invalid move: #{reason}"
+  					- otherwise verify CHECK, CHECKMATE, or DRAW
+  						- if Game over, "player wins!/draw! Play again? (Y/N)"
+  					- if game continues, black has the move
+  				SAVE:
+  					- Save to which slot? (1-3)
+  						- if save exists: "Overwrite existing save? (Y/N)"
+  							 - Y: "Game saved"
+  							 - N: "Save to which slot? (1-3)"
+  						- "Game saved"
+  				RESIGN:
+  					- #{other_player} wins! Play again? (Y/N)
+  						- Y: back to start
+  						- N: quit
+
+
+Classes:
+Board - knows where the pieces are:
+	[[" ","%"," ","%"," ","%"," ","%"],
+	 ["%"," ","%"," ","%"," ","%"," "],
+	 [" ","%"," ","%"," ","%"," ","%"],
+	 ["%"," ","%"," ","%"," ","%"," "],
+	 [" ","%"," ","%"," ","%"," ","%"],
+	 ["%"," ","%"," ","%"," ","%"," "],
+	 [" ","%"," ","%"," ","%"," ","%"],
+	 ["%"," ","%"," ","%"," ","%"," "],]
+Piece - knows its own position and possible moves
+Game - knows the rules and procedure
